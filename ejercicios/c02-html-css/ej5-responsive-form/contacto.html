@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Contacto - Francisco Gabriel Servidio</title>
+</head>
+<body>
+    <h1>Contacto</h1>
+
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="estudios.html">Estudios</a></li>
+            <li><a href="experiencia.html">Experiencia</a></li>
+            <li><a href="hobbies.html">Hobbies</a></li>
+            <li><a href="contacto.html"><strong>Contacto</strong></a></li>
+        </ul>
+    </nav>
+
+    <div class="secciones">
+        <div class="seccion formulario-contacto">
+            <h2>¡Contactame!</h2>
+            <form action="#" method="post">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required minlength="2" placeholder="Tu nombre">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="tu@email.com">
+
+                <label for="asunto">Asunto</label>
+                <input type="text" id="asunto" name="asunto" required minlength="5" placeholder="Asunto del mensaje">
+
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" required minlength="10" rows="5" placeholder="Escribí tu mensaje..."></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

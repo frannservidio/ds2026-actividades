@@ -1,0 +1,158 @@
+:root {
+    --color-primario: #2c3e50;
+    --color-secundario: #34495e;
+    --color-fondo: #f5f5f5;
+    --color-texto: #333;
+    --color-link: #2980b9;
+    --borde-radio: 8px;
+    --sombra: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Selectores de etiqueta */
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    padding: 20px 40px;
+    line-height: 1.6;
+}
+
+h1 {
+    color: var(--color-primario);
+    margin-bottom: 5px;
+}
+
+h2 {
+    color: var(--color-secundario);
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #555;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+ul, ol {
+    margin: 10px 0;
+    padding-left: 25px;
+}
+
+img {
+    margin: 15px 0;
+    border-radius: var(--borde-radio);
+    box-shadow: var(--sombra);
+}
+
+a {
+    color: var(--color-link);
+}
+
+/* Selector de clase - Navbar con Flexbox */
+.nav-menu {
+    background-color: var(--color-primario);
+    padding: 10px 20px;
+    border-radius: var(--borde-radio);
+    margin-bottom: 20px;
+    box-shadow: var(--sombra);
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding-left: 0;
+}
+
+.nav-menu a {
+    color: #ecf0f1;
+    text-decoration: none;
+}
+
+.nav-menu a:hover {
+    text-decoration: underline;
+}
+
+/* Secciones en grilla con Flexbox */
+.secciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.seccion {
+    flex: 1;
+    min-width: 250px;
+    background-color: white;
+    padding: 20px;
+    border-radius: var(--borde-radio);
+    box-shadow: var(--sombra);
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+    color: var(--color-secundario);
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: var(--borde-radio);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-link);
+    box-shadow: 0 0 4px rgba(41, 128, 185, 0.3);
+}
+
+button {
+    padding: 12px;
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    border-radius: var(--borde-radio);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--color-secundario);
+}
+
+/* Media Queries - Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .secciones {
+        flex-direction: column;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
