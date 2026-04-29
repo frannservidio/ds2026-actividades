@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 3 - Buscador de Libros</title>
+  <style>
+    .tarjeta {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .tarjeta h3 { margin: 0 0 6px; }
+    .tarjeta p { margin: 2px 0; }
+  </style>
+</head>
+<body>
+  <h1>Buscador de Libros</h1>
+  <input type="text" id="busqueda" placeholder="Buscar libro...">
+  <button id="btn-buscar">Buscar</button>
+  <p id="loading" style="display: none;">Cargando...</p>
+  <p id="error" style="display: none; color: red;"></p>
+  <div id="resultados"></div>
+  <script src="app.js"></script>
+</body>
+</html>
