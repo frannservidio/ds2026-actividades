@@ -121,3 +121,5 @@ btnTodos.addEventListener("click", () => {
 });
 
 renderizar(catalogo);
+
+export {};
