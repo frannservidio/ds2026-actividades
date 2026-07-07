@@ -3,4 +3,3 @@ dist/
 build/
 .env
 npm-debug.log
-.DS_Store
