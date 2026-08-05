@@ -18,6 +18,6 @@ La API queda disponible en `http://localhost:3000`:
 
 Cada recurso implementa `GET /`, `GET /:id`, `POST /`, `PUT /:id` y
 `DELETE /:id`. Las solicitudes de ejemplo, incluidos los casos 404, estan en
-`api.http`.
+`backend/api.http`.
 
 Tambien puede iniciarse el proyecto completo con `docker compose up --build`.
