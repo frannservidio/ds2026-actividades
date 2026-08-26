@@ -1,0 +1,108 @@
+@baseUrl = http://localhost:3000/api
+
+### Listar libros con autor
+GET {{baseUrl}}/libros
+
+### Detalle con autor y categorias
+GET {{baseUrl}}/libros/1
+
+### Crear un libro
+POST {{baseUrl}}/libros
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "precio": 18000,
+  "imagen": "https://ejemplo.com/rayuela.jpg",
+  "descripcion": "Una novela fundamental de la literatura argentina.",
+  "destacado": false,
+  "disponible": true,
+  "autorId": 1
+}
+
+### Actualizar un libro
+PUT {{baseUrl}}/libros/1
+Content-Type: application/json
+
+{
+  "precio": 16500,
+  "disponible": false
+}
+
+### Eliminar un libro
+DELETE {{baseUrl}}/libros/2
+
+### Listar autores
+GET {{baseUrl}}/autores
+
+### Obtener un autor
+GET {{baseUrl}}/autores/1
+
+### Crear un autor
+POST {{baseUrl}}/autores
+Content-Type: application/json
+
+{
+  "nombre": "Julio Cortazar",
+  "nacionalidad": "Argentina"
+}
+
+### Actualizar el autor recien creado (el seed crea los ids 1 a 4)
+PUT {{baseUrl}}/autores/5
+Content-Type: application/json
+
+{
+  "nacionalidad": "Estadounidense"
+}
+
+### Eliminar el autor recien creado
+DELETE {{baseUrl}}/autores/5
+
+### 400 - libro sin titulo
+POST {{baseUrl}}/libros
+Content-Type: application/json
+
+{
+  "precio": 5000,
+  "imagen": "https://ejemplo.com/invalido.jpg",
+  "descripcion": "Falta el titulo",
+  "autorId": 1
+}
+
+### 400 - id invalido
+GET {{baseUrl}}/libros/abc
+
+### 400 - autor inexistente
+POST {{baseUrl}}/libros
+Content-Type: application/json
+
+{
+  "titulo": "Huerfano",
+  "precio": 5000,
+  "imagen": "https://ejemplo.com/huerfano.jpg",
+  "descripcion": "El autor tiene formato valido, pero no existe.",
+  "autorId": 9999
+}
+
+### 404 - libro inexistente
+GET {{baseUrl}}/libros/9999
+
+### 404 - actualizar libro inexistente (P2025)
+PUT {{baseUrl}}/libros/9999
+Content-Type: application/json
+
+{
+  "precio": 20000
+}
+
+### 409 - autor duplicado (P2002)
+POST {{baseUrl}}/autores
+Content-Type: application/json
+
+{
+  "nombre": "Joe Dispenza",
+  "nacionalidad": "Estados Unidos"
+}
+
+### 409 - borrar autor con libros (P2003)
+DELETE {{baseUrl}}/autores/1
