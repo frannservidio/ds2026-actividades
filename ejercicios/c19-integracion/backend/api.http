@@ -1,0 +1,147 @@
+@baseUrl = http://localhost:3000/api
+
+### 1. Registro correcto: 201, sin passwordHash
+POST {{baseUrl}}/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Ana",
+  "email": "ana@libreria.test",
+  "password": "Libreria2026"
+}
+
+### 2. Email repetido: 409
+POST {{baseUrl}}/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Ana repetida",
+  "email": "ana@libreria.test",
+  "password": "Libreria2026"
+}
+
+### 3. Password corta: 400 con tres errores
+POST {{baseUrl}}/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Usuario invalido",
+  "email": "invalido@libreria.test",
+  "password": "corta"
+}
+
+### 4. Login con email inexistente: 401, mensaje generico
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "nadie@libreria.test",
+  "password": "Libreria2026"
+}
+
+### 5. Login con password incorrecta: 401, el mismo mensaje generico
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "cliente@libreria.test",
+  "password": "PasswordIncorrecta1"
+}
+
+### 6. Login correcto de CLIENTE: 200 con token
+# @name loginCliente
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "cliente@libreria.test",
+  "password": "Cliente1234"
+}
+
+@clienteToken = {{loginCliente.response.body.token}}
+
+### 7. /yo sin token: 401
+GET {{baseUrl}}/auth/yo
+
+### 8. /yo con token de CLIENTE: 200
+GET {{baseUrl}}/auth/yo
+Authorization: Bearer {{clienteToken}}
+
+### 9. Crear libro sin token: 401
+POST {{baseUrl}}/libros
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "precio": 18000,
+  "imagen": "https://ejemplo.com/rayuela.jpg",
+  "descripcion": "Una novela fundamental de la literatura argentina.",
+  "destacado": false,
+  "disponible": true,
+  "autorId": 1
+}
+
+### 10. Crear libro como CLIENTE: 403
+POST {{baseUrl}}/libros
+Authorization: Bearer {{clienteToken}}
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "precio": 18000,
+  "imagen": "https://ejemplo.com/rayuela.jpg",
+  "descripcion": "Una novela fundamental de la literatura argentina.",
+  "destacado": false,
+  "disponible": true,
+  "autorId": 1
+}
+
+### Preparacion del caso 11: token ADMIN capturado
+# @name loginAdmin
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@libreria.test",
+  "password": "Admin1234"
+}
+
+@adminToken = {{loginAdmin.response.body.token}}
+
+### 11. Crear libro como ADMIN: 201
+POST {{baseUrl}}/libros
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "precio": 18000,
+  "imagen": "https://ejemplo.com/rayuela.jpg",
+  "descripcion": "Una novela fundamental de la literatura argentina.",
+  "destacado": false,
+  "disponible": true,
+  "autorId": 1
+}
+
+### 12. Listar libros sin token: 200, lectura publica
+GET {{baseUrl}}/libros
+
+### Extra: crear autor como CLIENTE: 403
+POST {{baseUrl}}/autores
+Authorization: Bearer {{clienteToken}}
+Content-Type: application/json
+
+{
+  "nombre": "Julio Cortazar",
+  "nacionalidad": "Argentina"
+}
+
+### Extra: crear autor como ADMIN: 201
+POST {{baseUrl}}/autores
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "nombre": "Julio Cortazar",
+  "nacionalidad": "Argentina"
+}
